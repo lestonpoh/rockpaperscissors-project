@@ -1,3 +1,7 @@
+let playCount=0
+let playerWinCount = 0;
+let computerWinCount = 0
+
 function getComputerChoice(){
     let choices = ["rock","paper","scissors"]
 
@@ -26,9 +30,19 @@ function playRound(playerSelection){
     }
     const resultDisplay = document.querySelector(".resultDisplay")
     resultDisplay.textContent = result
-    console.log(resultDisplay)
+    
+    if (result === "win"){
+        playerWinCount+=1
+    }else if (result === "lose"){
+        computerWinCount+=1
+    }
 
-    // document.getElementsByClassName("resultdisplay").appendChild(resultDisplay)
+    const playerScore = document.querySelector("#playerScore");
+    playerScore.textContent = "Player Score: " + playerWinCount;
+    const computerScore = document.querySelector('#computerScore');
+    computerScore.textContent = "Computer Score: " + computerWinCount
+    
+    playCount += 1
 
 }
 
