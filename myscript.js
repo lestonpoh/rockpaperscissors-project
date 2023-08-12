@@ -1,11 +1,22 @@
-let playCount=0
 let playerWinCount = 0;
 let computerWinCount = 0
 
 function getComputerChoice(){
     let choices = ["rock","paper","scissors"]
-
     return choices[(Math.floor(Math.random()*choices.length))]
+}
+
+function getWinner(){
+    const overallScore = document.createElement("div")
+    if (playerWinCount === 5){
+        overallScore.textContent = "Player Wins"
+    }else{
+        overallScore.textContent = "Computer Wins"
+    }
+    resultDisplay.appendChild(overallScore)
+        
+    playerWinCount = 0;
+    computerWinCount = 0;
 }
 
 
@@ -41,19 +52,23 @@ function playRound(playerSelection){
     playerScore.textContent = "Player Score: " + playerWinCount;
     const computerScore = document.querySelector('#computerScore');
     computerScore.textContent = "Computer Score: " + computerWinCount
-    
-    playCount += 1
 
+    if (playerWinCount === 5 || computerWinCount === 5){
+        resultDisplay.textContent = ""
+        getWinner()
+    }
 }
 
+resultDisplay = document.querySelector(".resultDisplay")
+rockButton = document.querySelector(".rock");
+paperButton = document.querySelector(".paper");
+scissorsButton = document.querySelector(".scissors")
 
-rockbutton = document.querySelector(".rock");
-paperbutton = document.querySelector(".paper");
-scissorsbutton = document.querySelector(".scissors")
+rockButton.addEventListener("click",()=>playRound("rock"))
+paperButton.addEventListener("click",()=>playRound("paper"))
+scissorsButton.addEventListener("click",()=>playRound("scissors"))
 
-rockbutton.addEventListener("click",()=>playRound("rock"))
-paperbutton.addEventListener("click",()=>playRound("paper"))
-scissorsbutton.addEventListener("click",()=>playRound("scissors"))
+
 
 
 
